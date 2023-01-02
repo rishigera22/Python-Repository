@@ -1,0 +1,196 @@
+from random import shuffle
+
+card_list = ['A',2,3,4,5,6,7,8,9,10,'J','K','Q']
+
+shuffle(card_list)
+
+player_draw = card_list[0:3]
+dealer_draw = card_list[4:7]
+
+#Player Cards 
+card_a = player_draw[0]
+card_b = player_draw[1]
+card_c = player_draw[2]
+
+player_ace_drawn = 'N'
+player_face_card_drawn = 'N'
+player_result = 'Unknown'
+
+#Dealer Cards 
+card_d = dealer_draw[0]
+card_e = dealer_draw[1]
+card_f = dealer_draw[2]
+
+dealer_ace_drawn = 'N'
+dealer_face_card_drawn = 'N'
+dealer_result = 'Unknown'
+
+# Player Face Cards 
+if card_a in ['J','K','Q']: 
+  card_a = 10
+  player_face_card_drawn = 'Y'
+
+if card_b in ['J','K','Q']: 
+  card_b = 10
+  player_face_card_drawn = 'Y'
+
+if card_c in ['J','K','Q']: 
+  card_c = 10
+  player_face_card_drawn = 'Y'
+
+# Dealer Face Cards
+
+if card_d in ['J','K','Q']: 
+  card_d = 10
+  dealer_face_card_drawn = 'Y'
+
+if card_e in ['J','K','Q']: 
+  card_e = 10
+  dealer_face_card_drawn = 'Y'
+
+if card_f in ['J','K','Q']: 
+  card_f = 10
+  dealer_face_card_drawn = 'Y'
+
+# Player Aces
+
+if card_a =='A': 
+  card_a = 0
+  player_ace_drawn = 'Y'
+
+if card_b =='A': 
+  card_b = 0
+  player_ace_drawn = 'Y'
+
+if card_c == 'A': 
+  card_c = 0
+  player_ace_drawn = 'Y'
+
+
+# Dealer Aces
+
+if card_d =='A': 
+  card_d = 0
+  dealer_ace_drawn = 'Y'
+
+if card_e =='A': 
+  card_e = 0
+  dealer_ace_drawn = 'Y'
+
+if card_f == 'A': 
+  card_f = 0
+  dealer_ace_drawn = 'Y'
+
+#Player hit or stay
+
+
+print('Player Starting off with',player_draw[0:2])
+print('total is',card_a+card_b)
+print('hit?')
+
+hit = input()
+
+if hit == "y":
+  player_total = card_a + card_b + card_c
+  
+else:
+  player_total = card_a + card_b
+
+
+#Player Total
+
+if player_ace_drawn == 'Y' and player_total <=11:
+  player_total += 10 
+elif player_ace_drawn == 'Y' and player_total >11:
+  player_total += 1
+
+#Dealer Total
+
+dealer_total = card_d + card_e + card_f
+
+if dealer_ace_drawn == 'Y' and dealer_total <=11:
+  dealer_total += 10 
+elif dealer_ace_drawn == 'Y' and dealer_total >11:
+  dealer_total += 1
+
+#player result
+
+if player_total > 21:
+  player_result = 'Bust'
+
+if player_total == 21:
+  player_result = 'Blackjack'
+
+if player_total < 21:
+  player_result = 'Stay'
+
+#Dealer result
+
+if dealer_total > 21:
+  dealer_result = 'Bust'
+
+if dealer_total == 21:
+  dealer_result = 'Blackjack'
+
+if dealer_total < 21:
+  dealer_result = 'Stay'
+
+#Final Comparison
+
+#Player Final Result
+if hit == "y":
+  print('player cards are',player_draw)
+else:
+  print('player cards are',player_draw[0:2])
+  
+print('Result is:',player_total,player_result)
+print()
+print('Ace drawn?',player_ace_drawn)
+print('Face Card Drawn?', player_face_card_drawn)
+
+#Dealer Final Result
+print('---------------------------------')
+print('dealer cards are',dealer_draw)
+print('Result is:',dealer_total,dealer_result)
+print()
+print('Ace drawn?',dealer_ace_drawn)
+print('Face Card Drawn?', dealer_face_card_drawn)
+print('---------------------------------')
+
+#Winner
+winner = 'unknown'
+
+if player_result == dealer_result and player_result !='Stay' and dealer_result !='Stay':
+  winner = 'Draw'
+
+elif player_result == dealer_result and player_total == dealer_total:
+  winner = 'Draw'
+
+elif player_result == 'Bust':
+  winner = 'Dealer'
+
+elif dealer_result == 'Bust':
+  winner = 'Player'
+
+elif player_result == 'Blackjack':
+  winner = 'Player'
+
+elif dealer_result == 'Blackjack':
+  winner = 'Dealer'
+
+elif player_total > dealer_total:
+  winner = 'Player'
+
+elif player_total < dealer_total:
+  winner = 'Dealer'
+
+player_wins = 0
+dealer_wins = 0
+
+if winner == 'Player':
+  player_wins += 1
+elif winner == 'Dealer':
+  dealer_wins +=1
+
+print('winner is:',winner)
+
