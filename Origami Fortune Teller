@@ -1,0 +1,92 @@
+# Origami Fortune Teller
+
+#Set up the Exterior Colours, and the 2 Interiors for Numbers
+
+ColourList = ["Red","Blue","Green","Yellow"]
+Interior1 = [1,2,5,6] 
+Interior2 = [3,4,7,8]
+
+
+#Select a Colour From the Accepted List
+
+Colourpass = 0
+               
+while Colourpass <1:    
+    Colour = input("Choose a Colour among Red, Blue, Green, and Yellow")
+    if Colour not in ColourList:
+        print('Not in List Try Again')
+        Colourpass = 0                   
+    else:
+        Colourpass = 1                 
+                            
+ColourLength = len(Colour)
+interior = Interior1
+
+#Open and Close Fortune Teller X amount of times (showing Interior each time) Based on the Number of Letters in Colour
+
+for i in Colour:
+    print(i)
+    if interior == Interior1:
+        interior = Interior2
+    else:
+        interior = Interior1
+    print(interior)
+
+    
+
+#Select a Number From the Accepted List Will Be Done Twice
+
+numbercount = 2
+
+#Loop Start
+while numbercount > 0:
+    numberpass = 0
+
+    while numberpass <1:    
+        number1 = input("Please pick a number from " + str(interior))
+        if int(number1) not in interior:
+            print('Not in List Try Again')
+            numberpass = 0                   
+        else:
+            numberpass = 1
+            numbercount = numbercount - 1
+            
+#Open and Close Fortune Teller X amount of times (showing Interior each time) Based on the Number Selected 
+        
+    for i in range(int(number1)):
+        print(i+1)
+        if interior == Interior1:
+            interior = Interior2
+        else:
+            interior = Interior1
+        print(interior)
+#Loop End
+
+
+#Select a Final Number from the Accepted List to get the Response
+
+finalpass = 0
+
+while finalpass<1:
+    finalnumber = input("Please pick a number from " + str(interior))
+    if int(finalnumber) not in interior:
+        print('Not in List Try Again')
+        finalpass = 0
+    else:
+        finalpass = 1
+
+
+        
+# Select One of the Responses based on the final Number Picked
+
+responses = {1:"Your Portfolio will do Great",
+             2:"Your Porfolio will get Pummelled",
+             3:"Traffic will be great today",
+             4:"Traffic Will be a nightmare today",
+             5:"Your Team will win",
+             6:"Your Team will get demolished",
+             7:"Your Day will be peaceful",
+             8:"You will want to break something by days end"
+            }
+
+print(responses[int(finalnumber)])
