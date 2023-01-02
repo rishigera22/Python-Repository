@@ -1,0 +1,21 @@
+import random as r
+
+y = 0
+
+while y <= 1:
+    Question = input("Ask Question Here if empty program will break ")
+    
+    if Question == "":
+        y = 1
+        break
+    else:
+        result = r.randint(1,8)
+        Responses = {1:"it is Certain",
+                     2:"You may rely on it",
+                     3:"As I see it, yes",
+                     4:"Outlook Looks good",
+                     5:"Most likely",                 
+                     6:"It is decidedly so",
+                     7:"Without a doubt",
+                     8:"Yes definitely"}
+        print(Responses[result])
