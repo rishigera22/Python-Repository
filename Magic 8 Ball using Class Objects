@@ -1,0 +1,31 @@
+import random as r
+
+class magic8ball:
+    def __init__(self,name):
+        self.__name = name
+        self.__start_game()
+        
+    def __start_game(self):
+        
+        
+        y = 0
+        print("Hello " + self.__name)
+        while y <= 1:
+            Question = input("Ask Question Here if empty program will break ")
+            if Question == "":
+                y = 1
+                print("Thankyou for Playing " + self.__name)
+                break
+            else:
+                result = r.randint(1,7)
+                Responses = ["it is Certain",
+                     "You may rely on it",
+                     "As I see it, yes",
+                     "Outlook Looks good",
+                     "Most likely",                 
+                     "It is decidedly so",
+                     "Without a doubt",
+                     "Yes definitely"]
+                print(Responses[result])
+        
+testrun = magic8ball("Batman")
