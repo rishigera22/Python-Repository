@@ -14,7 +14,7 @@ class magic8ball:
         
         print("Hello " + self.name)
         y = 0
-        filepath = r"C:\Users\f_zer\Downloads\Python Masterclass\Questions.txt"
+        filepath = r"C:\Users\f_zer\Downloads\Python Masterclass\Questions.csv"
         
         while y <= 1:
             Question = input("Ask Question Here if empty program will break ")
