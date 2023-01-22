@@ -1,22 +1,48 @@
+#Project 3 Magic 8 Ball using Class Objects
+
 import random as r
+from os import startfile
 
 class magic8ball:
     def __init__(self,name):
-        self.__name = name
-        self.__start_game()
+        self.name = name          
+        self.mQuestion = []
         
-    def __start_game(self):
+        self.start_game()      
         
+    def start_game(self):
         
+        print("Hello " + self.name)
         y = 0
-        print("Hello " + self.__name)
+        filepath = r"C:\Users\f_zer\Downloads\Python Masterclass\Questions.txt"
+        
         while y <= 1:
             Question = input("Ask Question Here if empty program will break ")
             if Question == "":
                 y = 1
-                print("Thankyou for Playing " + self.__name)
+                print("Thankyou for Playing " + self.name)
+                
+                
+                #Clear Any Text in the CSV File
+                              
+                f = open(filepath, "w")
+                f.truncate()
+                
+                #Append Questions to the CSV File
+                
+                f = open(filepath, "a",newline = '')
+                
+                for q in self.mQuestion:
+                    f.write(q)
+                    f.close               
+                
+                #Open CSV File to Verify Update
+                
+                startfile(filepath)
+                
                 break
             else:
+                self.mQuestion.append(Question)
                 result = r.randint(1,7)
                 Responses = ["it is Certain",
                      "You may rely on it",
@@ -26,6 +52,7 @@ class magic8ball:
                      "It is decidedly so",
                      "Without a doubt",
                      "Yes definitely"]
-                print(Responses[result])
+                print(Responses[result])               
         
+              
 testrun = magic8ball("Batman")
