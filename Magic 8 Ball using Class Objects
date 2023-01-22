@@ -2,6 +2,7 @@
 
 import random as r
 from os import startfile
+import csv
 
 class magic8ball:
     def __init__(self,name):
@@ -32,9 +33,11 @@ class magic8ball:
                 
                 f = open(filepath, "a",newline = '')
                 
+                wrt = csv.writer(f)
+                
                 for q in self.mQuestion:
-                    f.write(q)
-                    f.close               
+                    wrt.writerow([q])
+                       
                 
                 #Open CSV File to Verify Update
                 
